@@ -8,7 +8,7 @@ class Problem1 {
 
     public static int solution(List<Integer> pobi, List<Integer> crong) {
         if (pobi.size() != 2 || crong.size() != 2) return -1;
-        if (!isValidPages(pobi) || !isValidPages(crong)) return -1;
+        if (isInvalidPages(pobi) || isInvalidPages(crong)) return -1;
         int pobiScore = getMaxPageScore(pobi);
         int crongScore = getMaxPageScore(crong);
 
@@ -17,10 +17,10 @@ class Problem1 {
         return 0;
     }
 
-    private static boolean isValidPages(List<Integer> pages) {
+    private static boolean isInvalidPages(List<Integer> pages) {
         int left = pages.get(0);
         int right = pages.get(1);
-        return left < right && right - left == 1;
+        return left >= right || right - left != 1;
     }
 
     private static int getMaxPageScore(List<Integer> pages) {
